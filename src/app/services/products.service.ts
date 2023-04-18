@@ -18,6 +18,15 @@ export class ProductsService {
     private http: HttpClient
   ) { }
 
+  getByCategory(categoryId:string,limit?: number, offset?: number ){
+    let params = new HttpParams();
+    if (limit && offset) {
+      params = params.set('limit', limit);
+      params = params.set('offset', limit);
+    }
+    return this.http.get<Product[]>(`${this.apiUrl}/category/${categoryId}`, { params, context: checkTime() })
+  }
+
   getAll(limit?: number, offset?: number) {
     let params = new HttpParams();
     if (limit && offset) {
@@ -44,7 +53,7 @@ export class ProductsService {
   }
 
   getOne(id: string) {
-    return this.http.get<Product>(`${this.apiUrl}/${id}`)
+    return this.http.get<Product>(`${this.apiUrl}/products/${id}`)
     .pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === HttpStatusCode.Conflict) {
@@ -62,7 +71,7 @@ export class ProductsService {
   }
 
   create(dto: CreateProductDTO) {
-    return this.http.post<Product>(this.apiUrl, dto);
+    return this.http.post<Product>(`${this.apiUrl}/products`, dto);
   }
 
   update(id: string, dto: UpdateProductDTO) {
