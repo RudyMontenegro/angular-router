@@ -21,6 +21,13 @@ export class ProductsComponent implements OnInit {
   //
   // Entradas Input
   @Input() products: Product[] = [];
+ // @Input() productsId: string | null= null;
+  @Input() // preguntar de forma continua
+  set productId(id: string | null){
+    if(id){
+      this.onShowDetail(id);
+    }
+  }
   //
   myShoppingCart: Product[] = [];
   total = 0;
@@ -52,7 +59,9 @@ export class ProductsComponent implements OnInit {
 
   onShowDetail(id: string) {
     this.statusDetail = 'loading';
-    this.toggleProductDetail();
+    if(!this.showProductDetail){
+      this.showProductDetail = true;
+    }
     this.productsService.getOne(id).subscribe(
       (data) => {
         this.productChosen = data;
