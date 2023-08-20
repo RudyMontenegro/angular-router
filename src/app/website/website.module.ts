@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from './../shared/shared.module';
 
+import { QuicklinkModule } from 'ngx-quicklink';
 
 
 import { MycartComponent } from './pages/mycart/mycart.component';
@@ -39,7 +40,8 @@ import { WebsiteRoutingModule } from './website-routing.module';
     CommonModule,
     WebsiteRoutingModule,
     SharedModule,
-    SwiperModule
+    SwiperModule,
+    QuicklinkModule
   ]
 })
 export class WebsiteModule { }
