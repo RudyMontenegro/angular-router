@@ -13,8 +13,8 @@ import { Location } from '@angular/common';
 })
 export class ProductDetailComponent implements OnInit {
 
-  productId: string | null = null;
-  product: Product | null = null;
+  productId?: string | null = null;
+  product?: Product | null = null;
 
   constructor(
     private route: ActivatedRoute,
